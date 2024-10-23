@@ -1,15 +1,13 @@
-public class InsufficientFundsException extends Exception {
-    public InsufficientFundsException(String message) {
-        super(message);
-    }
-}
+package classes;
+import exceptions.InsufficientFundsException;
 
 public class Account {
+
   private String id;
   private String name;
   private int balance = 0;
 
-  public Account(String id, String name){
+    public Account(String id, String name){
     this.id = id;
     this.name = name;
   }
@@ -20,12 +18,12 @@ public class Account {
     this.balance = balance;
   }
 
-  public String getId(){ return this.id; }
+  public String getID(){ return this.id; }
   public String getName(){ return this.name; }
   public int getBalance(){ return this.balance; }
 
   public int credit(int amount){ 
-    if(amount == 0) return;
+    if(amount == 0) return this.balance;
 
     if(amount < 0)
       throw new IllegalArgumentException("Amount must be non-negative");
@@ -34,17 +32,18 @@ public class Account {
     return this.balance;
   }
 
-  public int debit(int amount){ 
-    if(amount == 0) return;
-    this.validateDebitAmount(amout);
+  public int debit(int amount) throws InsufficientFundsException{ 
+    if(amount == 0) return this.balance;
+
+    this.validateDebitAmount(amount);
 
     this.balance -= amount;
     return this.balance;
   }
 
-  public void transferTo(Account other, int amount){ 
+  public void transferTo(Account other, int amount) throws InsufficientFundsException{ 
     if(amount == 0) return;
-    this.validateDebitAmount(amout);
+    this.validateDebitAmount(amount);
 
     this.balance -= amount; 
     other.credit(amount);
@@ -55,10 +54,10 @@ public class Account {
     return "Account[id=" + this.id + ",name="+ this.name + ",balance=" + this.balance + "]";
   }
 
-  private void validateDebitAmount(int amount){
+  private void validateDebitAmount(int amount) throws InsufficientFundsException {
     if(amount < 0)
       throw new IllegalArgumentException("Amount must be non-negative");
     if(this.balance < amount)
-      throw new InsufficientFundsException("Not enough funds to transfer");
+      throw new InsufficientFundsException("Amount exceeded balance");
   }
 }

@@ -1,10 +1,12 @@
+package classes;
+
 public class Rectangle { 
   private float length;
   private float width;
 
   public Rectangle(){
-    this.length = 0;
-    this.width = 0;
+    this.length = 1.0f;
+    this.width = 1.0f;
   }
 
   public Rectangle(float length, float width){
@@ -36,10 +38,6 @@ public class Rectangle {
 
   @Override
   public String toString(){ 
-    return "Rectangle[length=" + this.formatSize(this.length) + ", width=" + this.formatSize(this.width) + "]";
-  }
-
-  private static String formatSize(float size){
-    return String.format("%.2f", size);
+    return "Rectangle[length=" + this.length + ", width=" + this.width + "]";
   }
 }

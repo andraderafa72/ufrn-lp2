@@ -1,3 +1,5 @@
+package classes;
+
 public class Ball{
   private float x;
   private float y;
@@ -14,14 +16,14 @@ public class Ball{
   }
 
   public float getX(){ return this.x; }
-  public float getY(){ return this.x; }
-  public float getRadius(){ return this.radius; }
+  public float getY(){ return this.y; }
+  public int getRadius(){ return this.radius; }
   public float getXDelta(){ return this.xDelta; }
   public float getYDelta(){ return this.yDelta; }
 
   public void setX(float x) { this.x = x; }
   public void setY(float y) { this.y = y; }
-  public void setRadius(float radius) { this.radius = radius; }
+  public void setRadius(int radius) { this.radius = radius; }
   public void setXDelta(float delta) { this.xDelta = delta; }
   public void setYDelta(float delta) { this.yDelta = delta; }
 
@@ -40,6 +42,6 @@ public class Ball{
 
   @Override
   public String toString(){
-    return "Ball[(" + this.x + "," this.y + "),speed(" + this.xDelta + "," + this.yDelta + ")]";
+    return "Ball[(" + this.x + "," + this.y + "),speed=(" + this.xDelta + "," + this.yDelta + ")]";
   }
 }
